@@ -1,5 +1,6 @@
 # lint-rust-project.yml
 on:
+  workflow_dispatch:
   workflow_call:
     # name: 'Lint Rust project'
     # description: 'Lints a Rust project using cargo fmt and cargo clippy'
