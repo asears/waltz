@@ -1,4 +1,5 @@
 # .github/workflows/lint.yml
+name: lint
 on: push
 
 jobs:
