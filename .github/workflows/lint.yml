@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          repository: 'asears/actions'
       - uses: asears/actions/lint-rust@v1
         with:
           project-directory: .
