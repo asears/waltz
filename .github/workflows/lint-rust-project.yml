@@ -1,0 +1,22 @@
+# lint-rust-project.yml
+on:
+  workflow_call:
+    # name: 'Lint Rust project'
+    # description: 'Lints a Rust project using cargo fmt and cargo clippy'
+    inputs:
+      project-directory:
+        description: 'The directory containing the Rust project to lint'
+        required: true
+        type: string
+jobs:
+  reusable_workflow_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint with cargo fmt
+        run: cargo fmt -- --check
+        shell: bash
+        working-directory: ${{ inputs.project-directory }}
+      - name: Lint with cargo clippy
+        run: cargo clippy -- -D warnings
+        shell: bash
+        working-directory: ${{ inputs.project-directory }}
