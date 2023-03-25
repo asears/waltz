@@ -23,7 +23,7 @@ curl -LSfs https://japaric.github.io/trust/install.sh | sh -s -- --git killercup
 Make sure you have Rust and Cargo installed.
 
 ```bash
-$ cargo install --git https://github.com/killercup/waltz
+cargo install --git https://github.com/killercup/waltz
 ```
 
 Alternatively, clone this repository and run `cargo install --path waltz_cli`.
@@ -36,16 +36,16 @@ Write regular Markdown, but add an additional file flag to your code blocks, so 
 
 Example:
 
-    # Getting started
+## Getting started
 
-    First of all, create a simple `Cargo.toml` file:
+First of all, create a simple `Cargo.toml` file:
 
-    ```toml,file=Cargo.toml
-    [package]
-    authors = ["Pascal Hertleif <killercup@gmail.com>"]
-    name = "foo"
-    version = "0.1.0"
-    ```
+```toml,file=Cargo.toml
+[package]
+authors = ["Pascal Hertleif <killercup@gmail.com>"]
+name = "foo"
+version = "0.1.0"
+```
 
 ### As Rust library
 
