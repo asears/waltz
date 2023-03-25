@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: asears/waltz/lint-rust-project@v1
+      - uses: asears/actions/lint-rust@v1
         with:
           project-directory: .
