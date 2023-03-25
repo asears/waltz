@@ -41,7 +41,8 @@ fn run_script() {
         cargo test
         ```
     "#,
-    ).running(waltz_test)
+    )
+    .running(waltz_test)
     .creates(file("Cargo.toml"))
     .creates(file("src/lib.rs"))
     .creates(file("scripts/0-test.sh"));
@@ -57,7 +58,8 @@ fn failing_script() {
         cargo build
         ```
     ",
-    ).running(|cwd| {
+    )
+    .running(|cwd| {
         CliAssert::main_binary()
             .with_args(&[
                 "-vvv",
@@ -65,7 +67,8 @@ fn failing_script() {
                 "-o",
                 cwd.to_str().unwrap(),
                 cwd.join("test.md").to_str().unwrap(),
-            ]).fails()
+            ])
+            .fails()
             .prints_error("Script foo.sh failed.")
             .prints_error("could not find `Cargo.toml` in")
     });
@@ -81,6 +84,7 @@ fn script_with_side_effects() {
         touch foobar
         ```
     ",
-    ).running(waltz_test)
+    )
+    .running(waltz_test)
     .creates(file("foobar"));
 }

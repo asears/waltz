@@ -47,7 +47,8 @@ fn concat() {
         }
         ```
     "#,
-    ).running(waltz)
+    )
+    .running(waltz)
     .creates(file("Cargo.toml").containing(
         r#"
         [package]
@@ -55,7 +56,8 @@ fn concat() {
         name = "foo"
         version = "0.1.0"
     "#,
-    )).creates(file("src/lib.rs").containing(
+    ))
+    .creates(file("src/lib.rs").containing(
         r#"
         struct Foo {
             x: i32,
@@ -73,5 +75,6 @@ fn concat() {
             }
         }
     "#,
-    )).running(cargo_check);
+    ))
+    .running(cargo_check);
 }
