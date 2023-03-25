@@ -1,0 +1,120 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Run build
+    runs-on: '${{ matrix.sys.os }}'
+    strategy:
+      matrix:
+        sys:
+          - {os: ubuntu-latest, shell: bash }
+        compiler:
+          - { rs: rustc }
+    defaults:
+      run:
+        shell: ${{ matrix.sys.shell }}
+    env:
+      RS: ${{ matrix.compiler.rs }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: setup bash strict
+      run: set -Eeuxo pipefail
+    - name: Update rustup
+      run: rustup self update
+
+    - name: Install Rust
+      run: |
+        rustup set profile minimal
+        rustup component add clippy
+        rustup toolchain install nightly -c rust-docs
+        rustup default nightly
+
+    - name: Update Rust
+      run: |
+        rustup self update
+
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: 'latest'
+
+    - name: Install mdbook
+      if: ${{ false }}  # disable
+      run: |
+        mkdir bin
+        curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.15/mdbook-v0.4.15-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
+        echo "$(pwd)/bin" >> ${GITHUB_PATH}
+
+    - name: Report versions
+      run: |
+        rustup --version
+        rustc -Vv
+        mdbook --version
+        cargo --version --verbose
+        cargo clippy --version
+
+    - name: Lint waltz
+      run: |
+        cd waltz
+        cargo fmt -- --check
+        cargo clippy -- -D warnings
+
+    - name: Lint waltz_cli
+      run: |
+        cd waltz_cli
+        cargo fmt -- --check
+        cargo clippy -- -D warnings
+
+    - name: Test waltz
+      run: |
+          cd waltz
+          cargo check
+          cargo test --all
+
+    - name: Test waltz cli
+      run: |
+          cd waltz-cli
+          cargo check
+          cargo test --all
+
+    - name: Install cli
+      run: |
+        rustup target install ${{ matrix.sys.os }}
+
+    - name: Install cli
+      if: ${{ false }}  # disable
+      run: |
+        bash ci/install.sh
+
+    - name: Run tests
+      if: ${{ false }}  # disable
+      run: mdbook test
+
+    - name: Build HTML
+      if: ${{ false }}  # disable
+      run: mdbook build
+
+    - name: Check for broken links
+      if: ${{ false }}  # disable
+      run: |
+        curl -sSLo linkcheck.sh \
+          https://raw.githubusercontent.com/rust-lang/rust/master/src/tools/linkchecker/linkcheck.sh
+        sh linkcheck.sh --all rust-by-example
+
+    - name: disable bash strict
+      run: set +Eeuxo pipefail
+      shell: bash
+
+    - name: Upload Artifact
+      if: ${{ false }}  # disable
+      uses: actions/upload-artifact@v3
+      with:
+        name: waltz
+        path: book

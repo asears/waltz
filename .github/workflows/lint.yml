@@ -1,0 +1,11 @@
+# .github/workflows/lint.yml
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ${{ github.repository_owner }}/lint-rust-project@v1
+        with:
+          project-directory: waltz
