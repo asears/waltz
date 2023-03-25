@@ -11,7 +11,7 @@ on:
         required: true
         type: string
 jobs:
-  reusable_workflow_job:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Lint with cargo fmt

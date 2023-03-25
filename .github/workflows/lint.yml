@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ${{ github.repository_owner }}/lint-rust-project@v1
         with:
-          project-directory: waltz
+          project-directory: .
