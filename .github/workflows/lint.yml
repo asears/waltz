@@ -7,10 +7,21 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ github.event.inputs.project-directory }}
+
     steps:
       - uses: actions/checkout@v2
-        with:
-          repository: 'asears/actions'
-      - uses: asears/actions/lint-rust@v1
-        with:
-          project-directory: .
+      # with:
+      #   repository: 'asears/actions'
+      # - uses: asears/actions/lint-rust@v1
+      #   with:
+      #     project-directory: .
+      - name: Lint with cargo fmt
+        run: cargo fmt -- --check
+      - name: Lint with cargo clippy
+        run: cargo clippy -- -D warnings
+
