@@ -1,5 +1,5 @@
 # lint-rust-project.yml
-name: lint
+name: 'Lint Rust project'
 on:
   workflow_dispatch:
   workflow_call:
