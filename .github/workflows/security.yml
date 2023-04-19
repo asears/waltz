@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: asears/actions/scan-security@v1
+        with:
+          project-directory: ./
       - uses: asears/actions/scan-secrets@v1
         with:
           project-directory: ./
+
