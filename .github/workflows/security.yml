@@ -1,4 +1,5 @@
 # .github/workflows/security.yml
+name: security
 on: push
 
 jobs:
