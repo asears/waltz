@@ -1,6 +1,8 @@
 # .github/workflows/security.yml
 name: securityscan
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   scan:
