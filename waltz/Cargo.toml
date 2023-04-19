@@ -6,21 +6,21 @@ description = "Extract code blocks from Markdown and save them as files."
 readme = "../Readme.md"
 license = "MIT OR Apache-2.0"
 include = ["src/**/*", "Cargo.toml"]
-repository = "https://github.com/killercup/waltz"
+repository = "https://github.com/asears/waltz"
 documentation = "https://docs.rs/waltz"
 keywords = ["markdown", "documentation", "testing"]
 categories = ["development-tools::testing"]
 
 [dependencies]
 log = "0.4"
-pulldown-cmark = "0.1"
+pulldown-cmark = "0.9"
 regex = "1"
 lazy_static = "1.0.0"
 failure = "0.1.2"
 
 [dev-dependencies]
 tempdir = "0.3"
-unindent = "0.1"
+unindent = "0.2"
 
-[badges]
-travis-ci = { repository = "killercup/waltz" }
+# [badges]
+# travis-ci = { repository = "killercup/waltz" }

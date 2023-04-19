@@ -1,5 +1,7 @@
 # lint-rust-project.yml
+name: 'Lint Rust project'
 on:
+  workflow_dispatch:
   workflow_call:
     # name: 'Lint Rust project'
     # description: 'Lints a Rust project using cargo fmt and cargo clippy'
@@ -9,7 +11,7 @@ on:
         required: true
         type: string
 jobs:
-  reusable_workflow_job:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Lint with cargo fmt

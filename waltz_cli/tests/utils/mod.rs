@@ -30,7 +30,8 @@ pub fn waltz(cwd: &Path) -> CliAssert {
             "-o",
             cwd.to_str().unwrap(),
             cwd.join("test.md").to_str().unwrap(),
-        ]).succeeds()
+        ])
+        .succeeds()
 }
 
 pub fn waltz_test(cwd: &Path) -> CliAssert {
@@ -41,7 +42,8 @@ pub fn waltz_test(cwd: &Path) -> CliAssert {
             "-o",
             cwd.to_str().unwrap(),
             cwd.join("test.md").to_str().unwrap(),
-        ]).succeeds()
+        ])
+        .succeeds()
 }
 
 pub fn main(cwd: &Path) -> CliAssert {
