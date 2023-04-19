@@ -7,9 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run scan
-      
-      # - uses: ${{ github.repository_owner }}/scan-secrets@v1
       - uses: asears/scan-secrets@v1
         with:
           project-directory: ./
