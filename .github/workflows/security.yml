@@ -1,0 +1,11 @@
+# .github/workflows/security.yml
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ${{ github.repository_owner }}/scan-secrets@v1
+        with:
+          project-directory: ./
