@@ -1,5 +1,5 @@
 # .github/workflows/security.yml
-name: security
+name: securityscan
 on: push
 
 jobs:
